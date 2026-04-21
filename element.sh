@@ -14,3 +14,12 @@ then
 else
   ELEMENT=$($PSQL "SELECT atomic_number, symbol, name FROM elements WHERE symbol='$1' OR name='$1'")
 fi
+if [[ -z $ELEMENT ]]
+then
+  echo "I could not find that element in the database."
+  exit
+fi
+
+IFS="|" read ATOMIC_NUMBER SYMBOL NAME <<< "$ELEMENT"
+
+PROPERTIES=$($PSQL "SELECT atomic_mass, melting_point_celsius, boiling_point_celsius, type_id FROM properties WHERE atomic_number=$ATOMIC_NUMBER")
