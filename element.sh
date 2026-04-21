@@ -34,3 +34,5 @@ TYPE=$(echo $TYPE | xargs)
 MASS=$(echo $MASS | xargs)
 MELT=$(echo $MELT | xargs)
 BOIL=$(echo $BOIL | xargs)
+
+echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MELT celsius and a boiling point of $BOIL celsius."
